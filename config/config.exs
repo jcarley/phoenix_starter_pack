@@ -18,6 +18,14 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :guardian, Guardian,
+  issuer: "PhoenixStarterPack",
+  ttl: { 30, :days },
+  verify_issuer: true,
+  secret_key: "g14687Nu6sAcp(IQ03I/kL;qLNO7q[",
+  serializer: PhoenixStarterPack.GuardianSerializer,
+  hooks: PhoenixStarterPack.GuardianHooks
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
